@@ -19,23 +19,30 @@ const geistMono = localFont({
 export default function Home() {
   return (
     <>
-      <div className="my-5 mx-16 flex justify-center flex-col">
+      <div className="my-5 mx-12 flex justify-center flex-col">
         <Navbar />
         <div>
           <div className='flex flex-col justify-between'>
             <div className="pt-10 text-8xl relative z-0">
-              AI POWERED
+              AI
             </div>
-            <div className="pt-0 text-4xl relative z-0">
-              MEDICAL DIAGNOSIS
+            <div className="pt-0 text-8xl relative z-0">
+              POWERED
             </div>
           </div>
+
           <p className="absolute bottom-5 text-left">
             We make dope stuff here
           </p>
-          <p className="absolute bottom-5 text-right">
-            We make dope stuff heressss
-          </p>
+
+          <div className='absolute bottom-5 right-12 flex flex-col justify-between text-right'>
+            <div className="pt-10 text-8xl relative z-0">
+              MEDICAL
+            </div>
+            <div className="pt-0 text-8xl relative z-0">
+              DIAGNOSIS
+            </div>
+          </div>
         </div>
       </div>
     </>
