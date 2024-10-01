@@ -4,6 +4,7 @@ const PillScheduler = () => {
   const [medications, setMedications] = useState([]);
   const [newMed, setNewMed] = useState({ name: '', schedule: [], dosage: '', days: [] });
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [newTime, setNewTime] = useState('');
 
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -24,12 +25,20 @@ const PillScheduler = () => {
     setMedications(medications.filter(med => med.id !== id));
   };
 
-  const toggleTime = (time) => {
+  const addTime = () => {
+    if (newTime && !newMed.schedule.includes(newTime)) {
+      setNewMed(prev => ({
+        ...prev,
+        schedule: [...prev.schedule, newTime]
+      }));
+      setNewTime('');
+    }
+  };
+
+  const removeTime = (time) => {
     setNewMed(prev => ({
       ...prev,
-      schedule: prev.schedule.includes(time)
-        ? prev.schedule.filter(t => t !== time)
-        : [...prev.schedule, time]
+      schedule: prev.schedule.filter(t => t !== time)
     }));
   };
 
@@ -69,7 +78,7 @@ const PillScheduler = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl text-black">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
       <h1 className="text-2xl font-bold mb-6">Pill Scheduler</h1>
       
       <form onSubmit={addMedication} className="mb-6">
@@ -89,20 +98,33 @@ const PillScheduler = () => {
         />
         <div className="mb-2">
           <p className="mb-1 font-medium">Schedule:</p>
+          <div className="flex mb-2">
+            <input
+              type="time"
+              value={newTime}
+              onChange={(e) => setNewTime(e.target.value)}
+              className="p-2 border rounded mr-2"
+            />
+            <button
+              type="button"
+              onClick={addTime}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Add Time
+            </button>
+          </div>
           <div className="flex flex-wrap">
-            {['08:00', '12:00', '16:00', '20:00'].map(time => (
-              <button
-                key={time}
-                type="button"
-                onClick={() => toggleTime(time)}
-                className={`mr-2 mb-2 px-3 py-1 rounded ${
-                  newMed.schedule.includes(time)
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-800'
-                }`}
-              >
+            {newMed.schedule.map(time => (
+              <div key={time} className="mr-2 mb-2 px-3 py-1 bg-blue-100 text-blue-800 rounded flex items-center">
                 {time}
-              </button>
+                <button
+                  type="button"
+                  onClick={() => removeTime(time)}
+                  className="ml-2 text-red-500 hover:text-red-700"
+                >
+                  ×
+                </button>
+              </div>
             ))}
           </div>
         </div>
