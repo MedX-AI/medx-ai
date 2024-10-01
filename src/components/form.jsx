@@ -77,8 +77,8 @@ const MedicalHistoryForm = () => {
   );
 
   return (
-    <div className='max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl text-gray-700'>
-      <form onSubmit={handleSubmit} className="mx-auto p-6 bg-white shadow-md rounded-lg w-full text-black">
+    <div className=' mt-10 pl-8 bg-white rounded-lg shadow-xl text-gray-700'>
+      <form onSubmit={handleSubmit} className="mx-auto p-6 bg-white shadow-md rounded-lg text-black">
         <h2 className="text-4xl font-semibold mb-8 text-gray-700">Comprehensive Medical and Family History</h2>
         
         <div className='text-xl p-4'>
