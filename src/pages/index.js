@@ -32,7 +32,7 @@ export default function Home() {
           </div>
 
           <p className="absolute bottom-5 text-left">
-            We make dope stuff here
+            Transforming Healthcare,one click at a time
           </p>
 
           <div className='mix-blend-difference absolute bottom-5 right-12 flex flex-col justify-between text-right'>
@@ -45,11 +45,11 @@ export default function Home() {
           </div>
 
           <div className='mix-blend-difference absolute bottom-5 right-12 flex flex-col justify-between text-right' style={{bottom: "-25rem"}}>
-            <div className="pt-10 text-5xl relative z-0 ">
-              INSERT
+            <div className="pt-10 text-5xl relative z-0 right-0">
+            Healthcare Redefined 
             </div>
-            <div className="pt-0 text-xl relative z-0">
-              STUFF
+            <div className="pt-0 text-xl relative z-0 w-1/4 right-0">
+            MedX enhances healthcare efficiency through centralized records and AI-driven insights, enabling faster diagnoses and improved collaboration. Its focus on early disease detection and personalized medicine empowers both providers and patients for a healthier future.
             </div>
           </div>
         </div>
