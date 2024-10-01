@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import React from 'react';
 import Navbar from '../components/navbar';
 import Threebg from "@/components/three";
+// import ScrollTrigger from "gsap-trial/ScrollTrigger";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -41,6 +42,15 @@ export default function Home() {
             </div>
             <div className="pt-0 text-8xl relative z-0">
               DIAGNOSIS
+            </div>
+          </div>
+
+          <div className='mix-blend-difference absolute bottom-5 right-12 flex flex-col justify-between text-right' style={{bottom: "-25rem"}}>
+            <div className="pt-10 text-5xl relative z-0 ">
+              INSERT
+            </div>
+            <div className="pt-0 text-xl relative z-0">
+              STUFF
             </div>
           </div>
         </div>

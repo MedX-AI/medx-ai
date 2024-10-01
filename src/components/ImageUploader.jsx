@@ -46,7 +46,10 @@ const ImageUploader = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
+    <div className="image-uploader">
+      <h2 className='text-gray-700 pt-6 text-center font-bold text-4xl'>Pill Scheduler</h2>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl text-gray-700  ">
+      <h2 className="text-2xl font-bold text-gray-900  p-2">Upload Prescription  </h2>
       <div
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
@@ -92,6 +95,8 @@ const ImageUploader = () => {
           ))}
         </div>
       )}
+      
+    </div>
     </div>
   );
 };

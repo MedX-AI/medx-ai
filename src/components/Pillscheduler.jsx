@@ -78,8 +78,8 @@ const PillScheduler = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-      <h1 className="text-2xl font-bold mb-6">Pill Scheduler</h1>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl text-gray-700 p-4">
+      <h1 className="text-2xl font-bold mb-6">Alternatively,fill this form</h1>
       
       <form onSubmit={addMedication} className="mb-6">
         <input
