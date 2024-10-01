@@ -10,7 +10,7 @@ export default function SignupPage() {
     setMessage('');
 
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch('http://localhost:8000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,9 +21,9 @@ export default function SignupPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('Signup successful!');
-        // You might want to redirect the user or clear the form here
-      } else {
+        setMessage(data.message);
+      }
+      else {
         setMessage(data.message || 'Signup failed. Please try again.');
       }
     } catch (error) {
