@@ -2,8 +2,7 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import React from 'react';
 import Navbar from '../components/navbar';
-
-
+import Threebg from "@/components/three";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,6 +18,7 @@ const geistMono = localFont({
 export default function Home() {
   return (
     <>
+      <div className="absolute h-full w-full"><Threebg/></div>
       <div className="my-5 mx-12 flex justify-center flex-col">
         <Navbar />
         <div>
