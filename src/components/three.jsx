@@ -1,9 +1,10 @@
 "use client"
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, PerspectiveCamera, OrbitControls } from '@react-three/drei';
+import { useGLTF, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
+// import Syringe from './syringe';
 
 function DNA() {
   const { scene } = useGLTF('/DNA.glb');
@@ -32,6 +33,7 @@ function Capsule_top() {
 
   return <primitive object={scene} scale={[2, 2, 2]} position={[0, -10, -20]} />;
 }
+
 function Capsule_remaining() {
   const { scene } = useGLTF('/capsule_remaining.glb');
   return <primitive object={scene} scale={[2,2,2]} position={[0,-10,-20]} />;
@@ -113,14 +115,24 @@ export default function App() {
             <ambientLight intensity={1} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
             <Camera />
-            {/* <OrbitControls /> */}
             <DNA />
             <Stars />
             <Capsule_top />
             <Capsule_remaining/>
           </Canvas>
         </div>
-        <div style={{height: '100vh'}}></div>
+        <div className="flex flex-row"style={{height: '100vh'}}>
+        <Canvas>
+            <spotLight 
+              position={[10, 10, 10]} 
+              angle={0.15} 
+              penumbra={1} 
+              intensity={1} 
+              castShadow 
+            />
+            {/* <Syringe/> */}
+          </Canvas>
+        </div>
     </div>
   );
 }

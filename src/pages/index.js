@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import React from 'react';
 import Navbar from '../components/navbar';
 import Threebg from "@/components/three";
-// import ScrollTrigger from "gsap-trial/ScrollTrigger";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
