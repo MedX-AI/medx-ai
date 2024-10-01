@@ -6,9 +6,9 @@ import Pillscheduler from '@/components/Pillscheduler'
 const demo = () => {
   return (
     <div className='bg-white h-screen'>
-      <MedicalHistoryForm/>
-     {/* <ImageUploader/> */}
-     {/* <Pillscheduler/> */}
+      {/* <MedicalHistoryForm/> */}
+     <ImageUploader/>
+     <Pillscheduler/>
     </div>
 
   )
