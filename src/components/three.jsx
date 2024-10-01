@@ -107,17 +107,20 @@ export default function App() {
   }, []);
 
   return (
-    <div id="scroll-container" ref={refScrollContainer} data-scroll-container style={{ height: '200vh' }}>
-      <Canvas gl={{ clearColor: 'pink' }}>
-        <ambientLight intensity={1} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Camera />
-        {/* <OrbitControls /> */}
-        <DNA />
-        <Stars />
-        <Capsule_top />
-        <Capsule_remaining/>
-      </Canvas>
+    <div>
+        <div id="scroll-container" ref={refScrollContainer} data-scroll-container style={{ height: '200vh' }}>
+          <Canvas className="sticky" gl={{ clearColor: 'pink' }}>
+            <ambientLight intensity={1} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <Camera />
+            {/* <OrbitControls /> */}
+            <DNA />
+            <Stars />
+            <Capsule_top />
+            <Capsule_remaining/>
+          </Canvas>
+        </div>
+        <div style={{height: '100vh'}}></div>
     </div>
   );
 }
