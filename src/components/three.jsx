@@ -11,31 +11,31 @@ function DNA() {
 }
 
 function Capsule_top() {
-    const { scene } = useGLTF('/capsule_top.glb');
-  
-    scene.traverse((child) => {
-      if (child.isMesh) {
-        child.material = new THREE.MeshPhysicalMaterial({
-          color: 0xffffff,
-          metalness: 0.1,
-          roughness: 0.1,
-          transmission: 0.9, // glass-like transparency
-          opacity: 0.9,
-          transparent: true,
-          ior: 1.5, // index of refraction
-          reflectivity: 0.5,
-          clearcoat: 1.0,
-          clearcoatRoughness: 0.1,
-        });
-      }
-    });
-  
-    return <primitive object={scene} scale={[2, 2, 2]} position={[0, -10, -20]} />;
-  }
-  function Capsule_remaining() {
-    const { scene } = useGLTF('/capsule_remaining.glb');
-    return <primitive object={scene} scale={[2,2,2]} position={[0,-10,-20]} />;
-  }
+  const { scene } = useGLTF('/capsule_top.glb');
+
+  scene.traverse((child) => {
+    if (child.isMesh) {
+      child.material = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        metalness: 0.1,
+        roughness: 0.1,
+        transmission: 0.9,
+        opacity: 0.9,
+        transparent: true,
+        ior: 1.5,
+        reflectivity: 0.5,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1,
+      });
+    }
+  });
+
+  return <primitive object={scene} scale={[2, 2, 2]} position={[0, -10, -20]} />;
+}
+function Capsule_remaining() {
+  const { scene } = useGLTF('/capsule_remaining.glb');
+  return <primitive object={scene} scale={[2,2,2]} position={[0,-10,-20]} />;
+}
 
 function Camera() {
   const cameraRef = useRef();
@@ -59,6 +59,7 @@ function Camera() {
     });
   }, []);
 
+  
   useFrame(() => {
     if (cameraRef.current) {
       cameraRef.current.lookAt(0, 0, 0);
