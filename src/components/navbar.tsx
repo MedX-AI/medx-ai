@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <div className="py-2 px-10 flex justify-between items-center backdrop-blur-sm bg-indigo-950 rounded-lg z-10">
+    <div className="py-2 px-10 flex justify-between items-center bg-indigo-950 bg-opacity-30 backdrop-blur-sm  rounded-lg z-10">
       <div className="flex items-start">
         <h1 className="text-6xl">MEDX</h1>
         <h1 className="text-xl">AI</h1>
@@ -15,7 +15,6 @@ export default function Navbar() {
         <a href="#about" className="text-sm">THE SOLUTION</a>
         <a href="#about" className="text-sm">ABOUT</a>
       </nav>
-      
       <Link href="/demo" className="text-sm px-3.5 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center space-x-2">
         <div>TRY OUT DEMO</div>
         <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
