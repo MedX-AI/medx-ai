@@ -22,16 +22,17 @@ export default function Home() {
           </a>
       </div>
 
-      <div className="pt-10 text-8xl relative z-0">
-        AI POWERED
+      <div>
+        <div className="pt-10 text-8xl relative z-0">
+          AI POWERED
+        </div>
+        <div className="pt-0 text-4xl relative z-0">
+          MEDICAL DIAGNOSIS
+        </div>
+        <p className="text-left">
+          We make dope stuff here
+        </p>
       </div>
-      <div className="pt-0 text-4xl relative z-0">
-        MEDICAL DIAGNOSIS
-      </div>
-
-      <p className="text-left">
-        We make dope stuff here
-      </p>
     </div>
   );
 }
