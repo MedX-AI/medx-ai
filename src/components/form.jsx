@@ -32,10 +32,24 @@ const MedicalHistoryForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    // Here you would typically send the data to an API or process it further
+    try{
+      const response = await fetch('http://localhost:8000/inputs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log('Response:', data);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+
   };
 
   const nextStep = () => setStep(step + 1);
