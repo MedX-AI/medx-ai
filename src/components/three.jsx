@@ -1,12 +1,13 @@
 "use client"
 import React, { useRef, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, PerspectiveCamera } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF, PerspectiveCamera, OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 import gsap from 'gsap';
 
 function DNA() {
   const { scene } = useGLTF('/DNA.glb');
-  return <primitive object={scene} position={[30, -30, -30]} rotation={[Math.PI / 4, 0, 0]} />;
+  return <primitive object={scene} position={[0, -20, -30]} rotation={[Math.PI / 4, 0, 0]} />;
 }
 
 function Camera() {
@@ -19,13 +20,13 @@ function Camera() {
       gsap.to(cameraRef.current.position, {
         x: 0,
         y: 0,
-        z: 10,
+        z: 20,
+
         scrollTrigger: {
           trigger: '#scroll-container',
           start: 'top top',
           end: 'bottom bottom',
           scrub: true,
-        //   markers: true,
         },
       });
     });
@@ -37,7 +38,29 @@ function Camera() {
     }
   });
 
-  return <PerspectiveCamera ref={cameraRef} makeDefault position={[-70, 10, 0]} />;
+  return <PerspectiveCamera ref={cameraRef} makeDefault position={[-100, -10, 0]} />;
+}
+
+function addStar(scene) {
+  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+  const material = new THREE.MeshStandardMaterial({ 
+    color: THREE.MathUtils.randInt(0x000000, 0xffffff),
+    emissive: THREE.MathUtils.randInt(0x000000, 0xffffff)
+  });
+  const star = new THREE.Mesh(geometry, material);
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
+  star.position.set(x, y, z);
+  scene.add(star);
+}
+
+function Stars() {
+  const { scene } = useThree();
+
+  useEffect(() => {
+    Array(200).fill().forEach(() => addStar(scene));
+  }, [scene]);
+
+  return null;
 }
 
 export default function App() {
@@ -47,7 +70,9 @@ export default function App() {
         <ambientLight intensity={1} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Camera />
+        {/* <OrbitControls /> */}
         <DNA />
+        <Stars />
       </Canvas>
     </div>
   );
