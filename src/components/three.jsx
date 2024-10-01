@@ -10,6 +10,33 @@ function DNA() {
   return <primitive object={scene} position={[0, -20, -30]} rotation={[Math.PI / 4, 0, 0]} />;
 }
 
+function Capsule_top() {
+    const { scene } = useGLTF('/capsule_top.glb');
+  
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        child.material = new THREE.MeshPhysicalMaterial({
+          color: 0xffffff,
+          metalness: 0.1,
+          roughness: 0.1,
+          transmission: 0.9, // glass-like transparency
+          opacity: 0.9,
+          transparent: true,
+          ior: 1.5, // index of refraction
+          reflectivity: 0.5,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.1,
+        });
+      }
+    });
+  
+    return <primitive object={scene} scale={[2, 2, 2]} position={[0, -10, -20]} />;
+  }
+  function Capsule_remaining() {
+    const { scene } = useGLTF('/capsule_remaining.glb');
+    return <primitive object={scene} scale={[2,2,2]} position={[0,-10,-20]} />;
+  }
+
 function Camera() {
   const cameraRef = useRef();
 
@@ -64,8 +91,22 @@ function Stars() {
 }
 
 export default function App() {
+  const refScrollContainer = useRef(null);
+
+  useEffect(() => {
+    async function getLocomotive() {
+      const Locomotive = (await import("locomotive-scroll")).default;
+      const scroll = new Locomotive({
+        el: refScrollContainer.current,
+        smooth: true,
+      });
+    }
+
+    getLocomotive();
+  }, []);
+
   return (
-    <div id="scroll-container" style={{ height: '200vh' }}>
+    <div id="scroll-container" ref={refScrollContainer} data-scroll-container style={{ height: '200vh' }}>
       <Canvas gl={{ clearColor: 'pink' }}>
         <ambientLight intensity={1} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
@@ -73,6 +114,8 @@ export default function App() {
         {/* <OrbitControls /> */}
         <DNA />
         <Stars />
+        <Capsule_top />
+        <Capsule_remaining/>
       </Canvas>
     </div>
   );
