@@ -35,8 +35,8 @@ export default function Home() {
             We make dope stuff here
           </p>
 
-          <div className='absolute bottom-5 right-12 flex flex-col justify-between text-right'>
-            <div className="pt-10 text-8xl relative z-0">
+          <div className='mix-blend-difference absolute bottom-5 right-12 flex flex-col justify-between text-right'>
+            <div className="pt-10 text-8xl relative z-0 ">
               MEDICAL
             </div>
             <div className="pt-0 text-8xl relative z-0">
