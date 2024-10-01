@@ -5,7 +5,7 @@ import { useGLTF, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 
 function DNA() {
   const { scene } = useGLTF('/DNA.glb');
-  return <primitive object={scene} scale={[0.5, 0.5, 0.5]} position={[30,-30,0]}/>;
+  return <primitive object={scene} position={[30,-30,-30]} rotation={[Math.PI/4,0,0]}/>;
 }
 
 function Camera() {
@@ -17,7 +17,7 @@ function Camera() {
     }
   });
 
-  return <PerspectiveCamera ref={cameraRef} makeDefault position={[-30, 10, 10]} />;
+  return <PerspectiveCamera ref={cameraRef} makeDefault position={[-70, 10, 0]} />;
 }
 
 export default function App() {
