@@ -6,10 +6,9 @@ import Pillscheduler from '@/components/Pillscheduler'
 const demo = () => {
   return (
     <div className='bg-white h-screen' style={{height: "150vh"}}>
-      {/* <MedicalHistoryForm/> */}
+      <MedicalHistoryForm/>
       <h2 className='text-gray-700 pt-6 text-center font-bold text-4xl'>Pill Scheduler</h2>
       <div className='flex justify-center items-center'>
-      
      <ImageUploader/>
      <Pillscheduler/>
      </div>

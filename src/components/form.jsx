@@ -2,225 +2,167 @@ import React, { useState } from 'react';
 
 const MedicalHistoryForm = () => {
   const [formData, setFormData] = useState({
-    currentConditions: [],
-    previousSurgeries: '',
-    allergies: [],
-    currentMedications: [],
-    geneticDisorders: [],
-    familyMedicalHistory: [],
-    inheritedConditions: [],
-    lifestyleFactors: [],
-    mentalHealthHistory: [],
-    reproductiveHistory: [],
-    immunizationHistory: [],
+    patientAge: '',
+    maternalGeneticHistory: '',
+    paternalGeneticHistory: '',
+    maternalInheritedDisorder: '',
+    paternalInheritedDisorder: '',
+    bloodCellCount: '',
+    respiratoryRate: '',
+    heartRate: '',
+    geneticTest1Result: '',
+    geneticTest2Result: '',
+    substanceAbuseHistory: '',
+    assistedReproductiveTechnology: '',
+    previousPregnancyAnomalies: '',
+    whiteBloodCellCount: '',
+    respiratorySymptom: '',
+    cardiovascularSymptom: '',
+    neurologicalSymptom: '',
+    gastrointestinalSymptom: '',
+    musculoskeletalSymptom: '',
   });
-  const [medicationInput, setMedicationInput] = useState('');
 
-  const handleCheckboxChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: prev[field].includes(value)
-        ? prev[field].filter(item => item !== value)
-        : [...prev[field], value]
-    }));
-  };
-
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleMedicationInputChange = (e) => {
-    setMedicationInput(e.target.value);
-  };
-
-  const handleAddMedication = (e) => {
-    e.preventDefault();
-    if (medicationInput.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        currentMedications: [...prev.currentMedications, medicationInput.trim()]
-      }));
-      setMedicationInput('');
-    }
-  };
-
-  const handleRemoveMedication = (medicationToRemove) => {
-    setFormData(prev => ({
-      ...prev,
-      currentMedications: prev.currentMedications.filter(med => med !== medicationToRemove)
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to an API
+    console.log('Form Data:', formData);
+    // Here you would typically send the data to an API or process it further
   };
 
-  const CheckboxGroup = ({ title, options, field }) => (
-    <div className="mb-4">
-      <h3 className="text-lg font-semibold text-gray-700 mb-2">{title}</h3>
-      <div className="space-y-2">
-        {options.map((option) => (
-          <label key={option} className="flex items-center">
-            <input
-              type="checkbox"
-              className="form-checkbox h-4 w-4 text-blue-600"
-              checked={formData[field].includes(option)}
-              onChange={() => handleCheckboxChange(field, option)}
-            />
-            <span className="ml-2 text-lg text-gray-700 p-1">{option}</span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
+  const radioFields = [
+    { label: "Family history of genetic disorders on mother's side", name: "maternalGeneticHistory" },
+    { label: "Family history of genetic disorders on father's side", name: "paternalGeneticHistory" },
+    { label: "Presence of inherited disorder from mother", name: "maternalInheritedDisorder" },
+    { label: "Presence of inherited disorder from father", name: "paternalInheritedDisorder" },
+    { label: "History of substance abuse", name: "substanceAbuseHistory" },
+    { label: "Use of assisted reproductive technology (IVF/ART)", name: "assistedReproductiveTechnology" },
+    { label: "History of anomalies in previous pregnancies", name: "previousPregnancyAnomalies" },
+    { label: "Presence of respiratory symptoms", name: "respiratorySymptom" },
+    { label: "Presence of cardiovascular symptoms", name: "cardiovascularSymptom" },
+    { label: "Presence of neurological symptoms", name: "neurologicalSymptom" },
+    { label: "Presence of gastrointestinal symptoms", name: "gastrointestinalSymptom" },
+    { label: "Presence of musculoskeletal symptoms", name: "musculoskeletalSymptom" },
+    { label: "Genetic Test 1 Result (Positive/Negative)", name: "geneticTest1Result" },
+    { label: "Genetic Test 2 Result (Positive/Negative)", name: "geneticTest2Result" },
+  ];
 
   return (
-    <div className=' mt-10 pl-8 bg-white rounded-lg shadow-xl text-gray-700'>
-      <form onSubmit={handleSubmit} className="mx-auto p-6 bg-white shadow-md rounded-lg text-black">
-        <h2 className="text-4xl font-semibold mb-8 text-gray-700">Comprehensive Medical and Family History</h2>
-        
-        <div className='text-xl p-4'>
-          <CheckboxGroup
-            title="Current Medical Conditions"
-            options={['Diabetes', 'Hypertension', 'Asthma', 'Heart Disease', 'Arthritis', 'Chronic Pain', 'Thyroid Disorder', 'Gastrointestinal Issues', 'Migraines', 'Sleep Apnea']}
-            field="currentConditions"
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="max-w-md  mx-auto mt-8 p-4 text-gray-900 text-xl">
+      <h2 className=" font-semibold mb-4 text-3xl">Comprehensive Medical History Form</h2>
 
-        <div className="mb-4 p-4">
-          <label className="block text-lg font-semibold text-gray-700 mb-2" htmlFor="surgeries">
-            Previous Surgeries
-          </label>
-          <div className='border border-grey-700 p-1 text-lg'>
-            <select
-              id="surgeries"
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-              value={formData.previousSurgeries}
-              onChange={(e) => handleInputChange('previousSurgeries', e.target.value)}
-            >
-              <option value="">Select previous surgeries</option>
-              <option value="none">None</option>
-              <option value="appendectomy">Appendectomy</option>
-              <option value="tonsillectomy">Tonsillectomy</option>
-              <option value="gallbladder">Gallbladder Removal</option>
-              <option value="cesarean">Cesarean Section</option>
-              <option value="joint_replacement">Joint Replacement</option>
-              <option value="other">Other (Please specify in notes)</option>
-            </select>
+      <div className="mb-4">
+        <label className="block mb-1" htmlFor="patientAge">Patient Age:</label>
+        <input
+          type="number"
+          id="patientAge"
+          name="patientAge"
+          value={formData.patientAge}
+          onChange={handleChange}
+          className="w-full p-1 border rounded"
+          required
+        />
+      </div>
+
+      {radioFields.map((field) => (
+        <div key={field.name} className="mb-3">
+          <label className="block mb-1">{field.label}:</label>
+          <div className="flex space-x-4">
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                name={field.name}
+                value="1"
+                checked={formData[field.name] === '1'}
+                onChange={handleChange}
+                className="mr-1"
+              />
+              Yes
+            </label>
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                name={field.name}
+                value="0"
+                checked={formData[field.name] === '0'}
+                onChange={handleChange}
+                className="mr-1"
+              />
+              No
+            </label>
           </div>
         </div>
+      ))}
 
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Allergies"
-            options={['Pollen', 'Dust', 'Mold', 'Pet Dander', 'Latex', 'Nuts', 'Shellfish', 'Eggs', 'Soy', 'Penicillin', 'Other Medications']}
-            field="allergies"
-          />
-        </div>
+      <div className="mb-4">
+        <label className="block mb-1" htmlFor="bloodCellCount">Red Blood Cell Count (million cells/mcL):</label>
+        <input
+          type="number"
+          id="bloodCellCount"
+          name="bloodCellCount"
+          value={formData.bloodCellCount}
+          onChange={handleChange}
+          className="w-full p-1 border rounded"
+          required
+        />
+      </div>
 
-        <div className="mb-4 p-4">
-          <label className="block text-lg font-semibold text-gray-700 mb-2" htmlFor="medications">
-            Current Medications
-          </label>
-          <div className="flex items-center">
-            <input
-              type="text"
-              id="medications"
-              className="flex-grow mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Enter a medication"
-              value={medicationInput}
-              onChange={handleMedicationInputChange}
-            />
-            <button
-              type="button"
-              onClick={handleAddMedication}
-              className="ml-2 inline-flex items-center px-3 py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Add
-            </button>
-          </div>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {formData.currentMedications.map((medication, index) => (
-              <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                {medication}
-                <button
-                  type="button"
-                  onClick={() => handleRemoveMedication(medication)}
-                  className="ml-1 inline-flex items-center justify-center w-4 h-4 text-blue-400 hover:bg-blue-200 hover:text-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  &times;
-                </button>
-              </span>
-            ))}
-          </div>
-        </div>
+      <div className="mb-4">
+        <label className="block mb-1" htmlFor="respiratoryRate">Respiratory Rate (breaths per minute):</label>
+        <input
+          type="text"
+          id="respiratoryRate"
+          name="respiratoryRate"
+          value={formData.respiratoryRate}
+          onChange={handleChange}
+          placeholder="e.g., Normal (12-20)"
+          className="w-full p-1 border rounded"
+          required
+        />
+      </div>
 
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Family Members with Genetic Disorders"
-            options={['Cystic Fibrosis', 'Sickle Cell Anemia', 'Down Syndrome', 'Muscular Dystrophy', 'Tay-Sachs Disease', 'Fragile X Syndrome']}
-            field="geneticDisorders"
-          />
-        </div>
+      <div className="mb-4">
+        <label className="block mb-1" htmlFor="heartRate">Heart Rate (beats per minute):</label>
+        <input
+          type="text"
+          id="heartRate"
+          name="heartRate"
+          value={formData.heartRate}
+          onChange={handleChange}
+          placeholder="e.g., Normal (60-100), Tachycardia"
+          className="w-full p-1 border rounded"
+          required
+        />
+      </div>
 
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Family Medical History"
-            options={['Heart Disease', 'Cancer', 'Diabetes', 'Stroke', 'High Blood Pressure', 'Mental Illness', 'Alzheimer\'s Disease', 'Osteoporosis']}
-            field="familyMedicalHistory"
-          />
-        </div>
+      <div className="mb-4">
+        <label className="block mb-1" htmlFor="whiteBloodCellCount">White Blood Cell Count (cells/mcL):</label>
+        <input
+          type="number"
+          id="whiteBloodCellCount"
+          name="whiteBloodCellCount"
+          value={formData.whiteBloodCellCount}
+          onChange={handleChange}
+          step="0.01"
+          className="w-full p-1 border rounded"
+          required
+        />
+      </div>
 
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Inherited Conditions"
-            options={['Hemophilia', "Huntington's Disease", 'Color Blindness', 'Polycystic Kidney Disease', 'Marfan Syndrome', 'Hereditary Spherocytosis']}
-            field="inheritedConditions"
-          />
-        </div>
-
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Lifestyle Factors"
-            options={['Smoking', 'Alcohol Consumption', 'Sedentary Lifestyle', 'High Stress', 'Poor Diet', 'Lack of Sleep']}
-            field="lifestyleFactors"
-          />
-        </div>
-
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Mental Health History"
-            options={['Depression', 'Anxiety', 'Bipolar Disorder', 'PTSD', 'Eating Disorders', 'Substance Abuse']}
-            field="mentalHealthHistory"
-          />
-        </div>
-
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Reproductive History"
-            options={['Pregnancies', 'Miscarriages', 'Abortions', 'Fertility Issues', 'Menopause', 'Hysterectomy']}
-            field="reproductiveHistory"
-          />
-        </div>
-
-        <div className='p-4'>
-          <CheckboxGroup
-            title="Immunization History"
-            options={['MMR', 'Tetanus', 'Hepatitis B', 'Influenza', 'HPV', 'COVID-19']}
-            field="immunizationHistory"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+      >
+        Submit Medical History
+      </button>
+    </form>
   );
 };
 
