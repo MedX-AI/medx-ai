@@ -15,6 +15,7 @@ export default function Navbar() {
         <a href="#about" className="text-sm">THE SOLUTION</a>
         <a href="#about" className="text-sm">ABOUT</a>
       </nav>
+      
       <Link href="/demo" className="text-sm px-3.5 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center space-x-2">
         <div>TRY OUT DEMO</div>
         <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
