@@ -1,12 +1,13 @@
-import React from 'react';
-import Navbar from '../components/navbar'; // Adjust the path as necessary
+import React from 'react'
+import MedicalHistoryForm from '@/components/form.jsx'
 
-export default function Home() {
+const demo = () => {
   return (
-    <>
-      <div className="my-5 mx-16 flex justify-center flex-col">
-        <Navbar />
-      </div>
-    </>
-  );
+    <div>
+      <MedicalHistoryForm/>
+    </div>
+
+  )
 }
+
+export default demo
