@@ -15,10 +15,15 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const DUBAI = localFont({
+  src: "./fonts/DUBAI-MEDIUM.ttf",
+  variable: "--font-dubai",
+});
+
 export default function Home() {
   return (
     <>
-      <div className="absolute h-full w-full"><Threebg/></div>
+      <div className="absolute h-full w-full font-dubai dubai.variable"><Threebg/></div>
       <div className="my-5 mx-12 flex justify-center flex-col">
         <Navbar />
         <div>
@@ -48,7 +53,7 @@ export default function Home() {
             <div className="pt-10 text-5xl relative z-0 right-0">
             Healthcare Redefined 
             </div>
-            <div className="pt-0 text-xl relative z-0 w-1/4 right-0">
+            <div className="pt-0 text-xl relative z-0 w-1/4 left-12">
             MedX enhances healthcare efficiency through centralized records and AI-driven insights, enabling faster diagnoses and improved collaboration. Its focus on early disease detection and personalized medicine empowers both providers and patients for a healthier future.
             </div>
           </div>

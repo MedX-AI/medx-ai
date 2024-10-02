@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, PerspectiveCamera } from '@react-three/drei';
+import { useGLTF, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 // import Syringe from './syringe';
@@ -121,18 +121,16 @@ export default function App() {
             <Capsule_remaining/>
           </Canvas>
         </div>
-        <div className="flex flex-row"style={{height: '100vh'}}>
-        <Canvas>
-            <spotLight 
-              position={[10, 10, 10]} 
-              angle={0.15} 
-              penumbra={1} 
-              intensity={1} 
-              castShadow 
-            />
-            {/* <Syringe/> */}
-          </Canvas>
+      <div className="flex" style={{height: '30vh'}}>
+        <p className="text-5xl absolute left-5">Imagine a world where your complete medical history is at your fingertips, where doctors and specialists collaborate seamlessly, and where personalized care is the norm. With MedX, this vision becomes a reality.</p>
+      </div>
+
+      <div className='bg-purple-950' style={{height: '25vh'}}>
+        <div className='text-9xl'>CONTACT US</div>
+        <div className='absolute text-3xl right-0 bottom-15'>contact@vitstudent.ac.in
         </div>
+      </div>
+
     </div>
   );
 }
