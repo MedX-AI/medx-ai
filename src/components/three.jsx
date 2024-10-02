@@ -122,7 +122,7 @@ export default function App() {
           </Canvas>
         </div>
       <div className="flex" style={{height: '30vh'}}>
-        <p className="text-5xl absolute left-5">Imagine a world where your complete medical history is at your fingertips, where doctors and specialists collaborate seamlessly, and where personalized care is the norm. With MedX, this vision becomes a reality.</p>
+        <p className="text-4xl absolute left-5">Imagine a world where your complete medical history is at your fingertips, where doctors and specialists collaborate seamlessly, and where personalized care is the norm. With MedX, this vision becomes a reality.</p>
       </div>
 
       <div className='bg-purple-950' style={{height: '25vh'}}>
