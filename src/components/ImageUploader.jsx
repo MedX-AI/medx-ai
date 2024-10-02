@@ -22,7 +22,7 @@ const ImageUploader = () => {
   }, []);
 
   const handleFiles = (files) => {
-    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const validImageTypes = ['image/png'];
     const selectedFiles = Array.from(files).filter(file => 
       validImageTypes.includes(file.type)
     );
